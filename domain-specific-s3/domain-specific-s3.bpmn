@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1c74zun" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.6.0">
+  <bpmn:process id="domain-specific-s3_38d9ca4e-e48c-42ac-9d50-c62295c1c460" name="Domain Specific S3" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" camunda:formKey="32dcafc9-5a3d-4ed9-ac91-3cb68383e4ac">
+      <bpmn:outgoing>Flow_174hs5u</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:intermediateThrowEvent id="Event_0b9z9pp">
+      <bpmn:incoming>Flow_19vunee</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:callActivity id="Activity_145b1ua" name="Create Presigned Url" camunda:modelerTemplate="de.muenchen.digitalwf.templates.S3CreatePresignedUrlTemplateV01" calledElement="StreamingTemplateV01">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${app_file_s3_async_config}" target="app_topic_name" />
+        <camunda:in sourceExpression="createPresignedUrl" target="app_message_name" />
+        <camunda:in sourceExpression="createPresignedUrl" target="app_type_name" />
+        <camunda:in sourceExpression="GET" target="action" />
+        <camunda:in sourceExpression="GET" target="app_file_action" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="action">GET</camunda:inputParameter>
+          <camunda:inputParameter name="path">test</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:out source="presignedUrls" target="getPresignedUrls" />
+        <camunda:in sourceExpression="WallpaperDog-1002112.jpg;WallpaperDog-10871275.jpg;WallpaperDog-11030283.jpg" target="path" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_174hs5u</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nf1mk3</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1nf1mk3" sourceRef="Activity_145b1ua" targetRef="Activity_0xjgh5j" />
+    <bpmn:callActivity id="Activity_0xjgh5j" name="Send Mail" camunda:modelerTemplate="de.muenchen.digitalwf.templates.send-email" calledElement="StreamingTemplateV01">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="genericEvent" target="app_message_name" />
+        <camunda:in sourceExpression="sendMailFromEventBus" target="app_type_name" />
+        <camunda:in sourceExpression="ext.dl.moesle@muenchen.de" target="receiversCc" />
+        <camunda:in sourceExpression="ext.dl.moesle@muenchen.de" target="receiversBcc" />
+        <camunda:in sourceExpression="ext.dl.moesle@muenchen.de" target="replyTo" />
+        <camunda:out source="mailSentStatus" target="mailSentStatus" />
+        <camunda:in sourceExpression="ext.dl.moesle@muenchen.de" target="receivers" />
+        <camunda:in sourceExpression="S3 Test" target="subject" />
+        <camunda:in sourceExpression="Test" target="body" />
+        <camunda:in sourceExpression="dwf-email-local-01" target="app_topic_name" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="subject">S3 Test</camunda:inputParameter>
+          <camunda:inputParameter name="body">test</camunda:inputParameter>
+          <camunda:inputParameter name="attachments">presignedUrls</camunda:inputParameter>
+          <camunda:inputParameter name="receivers">ext.dl.moesle@muenchen.de</camunda:inputParameter>
+          <camunda:inputParameter name="app_topic_name">dwf-email-local-01</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in sourceExpression="${getPresignedUrls}" target="attachments" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1nf1mk3</bpmn:incoming>
+      <bpmn:outgoing>Flow_19vunee</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_19vunee" sourceRef="Activity_0xjgh5j" targetRef="Event_0b9z9pp" />
+    <bpmn:sequenceFlow id="Flow_174hs5u" sourceRef="StartEvent_1" targetRef="Activity_145b1ua" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="domain-specific-s3_38d9ca4e-e48c-42ac-9d50-c62295c1c460">
+      <bpmndi:BPMNEdge id="Flow_19vunee_di" bpmnElement="Flow_19vunee">
+        <di:waypoint x="580" y="124" />
+        <di:waypoint x="642" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nf1mk3_di" bpmnElement="Flow_1nf1mk3">
+        <di:waypoint x="410" y="124" />
+        <di:waypoint x="480" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_174hs5u_di" bpmnElement="Flow_174hs5u">
+        <di:waypoint x="188" y="127" />
+        <di:waypoint x="310" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="109" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qpnmbo_di" bpmnElement="Activity_145b1ua">
+        <dc:Bounds x="310" y="84" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s2xgf0_di" bpmnElement="Activity_0xjgh5j">
+        <dc:Bounds x="480" y="84" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0b9z9pp_di" bpmnElement="Event_0b9z9pp">
+        <dc:Bounds x="642" y="106" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
