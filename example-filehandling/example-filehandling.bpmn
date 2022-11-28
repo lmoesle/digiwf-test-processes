@@ -14,8 +14,8 @@
     <bpmn:userTask id="Activity_183rzch" name="File Handling" camunda:assignee="112092000">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="app_file_paths">test</camunda:inputParameter>
-          <camunda:inputParameter name="app_file_paths_readonly">test</camunda:inputParameter>
+          <camunda:inputParameter name="app_file_paths">test/WallpaperDog-1002112.jpg;test/WallpaperDog-5475752.jpg</camunda:inputParameter>
+          <camunda:inputParameter name="app_file_paths_readonly">test/WallpaperDog-1002112.jpg;test/WallpaperDog-5475752.jpg</camunda:inputParameter>
           <camunda:inputParameter name="app_task_schema_key">example-filehandling_start</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -25,13 +25,13 @@
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="example-filehandling">
-      <bpmndi:BPMNEdge id="Flow_125bfvu_di" bpmnElement="Flow_125bfvu">
-        <di:waypoint x="215" y="97" />
-        <di:waypoint x="270" y="97" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vx51se_di" bpmnElement="Flow_0vx51se">
         <di:waypoint x="370" y="97" />
         <di:waypoint x="422" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_125bfvu_di" bpmnElement="Flow_125bfvu">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="270" y="97" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="79" width="36" height="36" />

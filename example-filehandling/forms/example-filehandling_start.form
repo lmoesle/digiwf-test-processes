@@ -1,20 +1,62 @@
 {
-  "key": "example-filehandling_start",
-  "schema": {
-    "type": "object",
-    "x-display": "stepper",
-    "allOf": [
-        {
-            "title": "Abschnitt",
-            "description": "",
-            "type": "object",
-            "x-options": {
-                "sectionsTitlesClasses": [
-                    "d-none"
-                ]
-            },
-            "allOf": []
-        }
-    ]
+    "key": "example-filehandling_start",
+    "schema": {
+        "type": "object",
+        "x-display": "stepper",
+        "allOf": [
+            {
+                "title": "Abschnitt",
+                "description": "",
+                "type": "object",
+                "x-options": {
+                    "sectionsTitlesClasses": [
+                        "d-none"
+                    ]
+                },
+                "allOf": [
+                    {
+                        "containerType": "group",
+                        "title": "Group",
+                        "description": "",
+                        "x-options": {
+                            "childrenClass": "pl-0"
+                        },
+                        "properties": {
+                            "ab62f15b-33a7-4518-9c31-b391357ae0e0": {
+                                "fieldType": "file",
+                                "title": "Files",
+                                "x-display": "custom-multi-file-input",
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "key": "ab62f15b-33a7-4518-9c31-b391357ae0e0",
+                                "uuidEnabled": false,
+                                "filePath": "test/WallpaperDog-1002112.jpg;test/WallpaperDog-5475752.jpg",
+                                "x-options": {
+                                    "fieldColProps": {
+                                        "cols": 12,
+                                        "sm": 12,
+                                        "messages": {}
+                                    }
+                                },
+                                "x-props": {
+                                    "outlined": true,
+                                    "dense": true
+                                },
+                                "x-rules": []
+                            }
+                        },
+                        "key": "5581b680-9cc6-4612-8b82-cc71a69fae73"
+                    }
+                ],
+                "key": "5c2996cc-f123-41ca-90ea-6536668a3a7b"
+            }
+        ]
     }
 }
