@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0sduois" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.6.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <bpmn:process id="example-filehandling" name="example-filehandling" isExecutable="true">
+    <bpmn:documentation />
+    <bpmn:extensionElements />
+    <bpmn:startEvent id="StartEvent_1" camunda:formKey="example-filehandling_start">
+      <bpmn:outgoing>Flow_125bfvu</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_125bfvu" sourceRef="StartEvent_1" targetRef="Activity_183rzch" />
+    <bpmn:intermediateThrowEvent id="Event_1ee0mbg">
+      <bpmn:incoming>Flow_0vx51se</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_0vx51se" sourceRef="Activity_183rzch" targetRef="Event_1ee0mbg" />
+    <bpmn:userTask id="Activity_183rzch" name="File Handling" camunda:assignee="112092000">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="app_file_paths">test</camunda:inputParameter>
+          <camunda:inputParameter name="app_file_paths_readonly">test</camunda:inputParameter>
+          <camunda:inputParameter name="app_task_schema_key">example-filehandling_start</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_125bfvu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vx51se</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="example-filehandling">
+      <bpmndi:BPMNEdge id="Flow_125bfvu_di" bpmnElement="Flow_125bfvu">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="270" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vx51se_di" bpmnElement="Flow_0vx51se">
+        <di:waypoint x="370" y="97" />
+        <di:waypoint x="422" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ee0mbg_di" bpmnElement="Event_1ee0mbg">
+        <dc:Bounds x="422" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_19rm4y9_di" bpmnElement="Activity_183rzch">
+        <dc:Bounds x="270" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
