@@ -1,0 +1,15 @@
+{
+  "key": "example-filehandling",
+  "statusDokument": "",
+  "statusConfig": [],
+  "configs": [
+    {
+      "key": "app_file_paths",
+      "value": "test/WallpaperDog-1002112.jpg;test/WallpaperDog-5475752.jpg"
+    },
+    {
+      "key": "app_file_paths_readonly",
+      "value": "test/WallpaperDog-1002112.jpg;test/WallpaperDog-5475752.jpg"
+    }
+  ]
+}
